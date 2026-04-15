@@ -3,6 +3,7 @@ import os
 
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_openai import ChatOpenAI
+from unils.prompt import load_prompt
 
 llm = ChatOpenAI(
     model='qwen3-32b',
@@ -13,21 +14,8 @@ llm = ChatOpenAI(
     }
 )
 
-prompt = ChatPromptTemplate.from_template("""
-提取以下信息：
-- order_id
-- product
-- issue
-
-只输出JSON：
-{{
-  "order_id": "",
-  "product": "",
-  "issue": ""
-}}
-
-输入：
-{text}
-""")
+prompt = ChatPromptTemplate.from_template(
+    load_prompt("prompts/extraction.txt")
+)
 
 extraction_chain = prompt | llm

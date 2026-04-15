@@ -1,4 +1,3 @@
-# chains/intent.py
 import os
 
 from langchain_core.prompts import ChatPromptTemplate
@@ -15,7 +14,7 @@ llm = ChatOpenAI(
 )
 
 prompt = ChatPromptTemplate.from_template(
-    load_prompt("prompts/intent.txt")
+    load_prompt("prompts/chat.txt")
 )
 
-intent_chain = prompt | llm
+chat_chain = prompt | llm
