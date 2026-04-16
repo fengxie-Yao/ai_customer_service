@@ -7,6 +7,7 @@ from chains.refund import handle_refund
 from chains.chat import chat_chain
 from unils.parser import validate_extraction, validate_intent, call_with_retry, safe_json_parse
 from unils.prompt import format_history
+from rag.chain import rag_answer
 
 app = FastAPI()
 
@@ -64,6 +65,10 @@ async def chat(user_input: str, session_id: str):
     # 路由
     if intent_data["intent"] == "refund":
         result = handle_refund(extraction_data)
+    elif intent_data["intent"] == "complaint":
+        result = "请输入您的投诉内容"
+    elif intent_data["intent"] == "query":
+        result = rag_answer(user_input)
     else:
         result = "客服处理中"
 
