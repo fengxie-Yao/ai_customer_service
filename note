@@ -1,0 +1,26 @@
+待做：
+上下文压缩
+日志LangSmith
+tool calling
+rag策略
+
+伪优化：
+限流（Rate Limit）
+缓存（减少LLM调用）
+Token统计
+并发压测思路
+
+
+你能不能回答：
+Agent挂了怎么办？
+Agent跑10分钟怎么办？
+Agent权限怎么控制？
+Agent怎么扩展到100并发？
+
+
+- Prompt设计
+- 上下文管理
+- RAG检索
+- Agent调度
+- 系统稳定性
+- 成本控制

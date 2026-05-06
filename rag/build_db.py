@@ -3,9 +3,14 @@ import os
 from langchain_community.vectorstores import FAISS
 from langchain_community.embeddings import DashScopeEmbeddings
 from langchain_text_splitters import CharacterTextSplitter
+from pathlib import Path
 
+BASE_DIR = Path(__file__).resolve().parent
+PROJECT_ROOT = BASE_DIR.parent
+faq_path = PROJECT_ROOT / "data" / "faq.txt"
+vector_dir = PROJECT_ROOT / "data" / "vector_store"
 # 读取数据
-with open("../data/faq.txt", "r", encoding="utf-8") as f:
+with faq_path.open("r", encoding="utf-8") as f:
     text = f.read()
 
 # 切分
@@ -27,4 +32,4 @@ embeddings = DashScopeEmbeddings(
 db = FAISS.from_texts(texts, embeddings)
 
 # 保存
-db.save_local("../data/vector_store")
+db.save_local(str(vector_dir))
